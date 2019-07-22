@@ -1,0 +1,120 @@
+Drop TABLE Character_Character;
+Drop TABLE Character_Weapon;
+Drop TABLE Character;
+Drop TABLE Weapon;
+Drop TABLE DndClass_Spells;
+Drop TABLE DndClass;
+Drop TABLE Race;
+Drop TABLE Spells;
+Drop SEQUENCE DNDCLASS_SEQ;
+Drop SEQUENCE RACE_SEQ;
+Drop SEQUENCE WEAPON_SEQ;
+Drop SEQUENCE CHARACTER_SEQ;
+
+create TABLE Weapon (
+	weapon_ID SERIAL PRIMARY KEY,
+	weapon_name varchar(30),
+	damage varchar(10),
+	damage_type varchar(30),
+	materials varchar(255)
+);
+
+create TABLE DNDClass (
+	class_ID SERIAL PRIMARY KEY,
+	class_name varchar(30)
+);
+
+create TABLE Race (
+	race_ID SERIAL PRIMARY KEY,
+	race_name varchar(30),
+	str_bonus int,
+	dex_bonus int,
+	con_bonus int,
+	int_bonus int,
+	wis_bonus int,
+	cha_bonus int
+);
+
+create TABLE Spells (
+	spell_ID SERIAL PRIMARY KEY,
+	spell_name varchar(30)
+);
+
+create TABLE DNDClass_Spells (
+	class_ID int REFERENCES DNDClass(class_ID),
+	spell_ID int REFERENCES Spells(spell_ID)
+);
+
+create TABLE Character (
+	character_ID SERIAL PRIMARY KEY,
+	character_name varchar(30),
+	class_ID int REFERENCES DNDClass(class_ID),
+	strength int,
+	dexterity int,
+	consitution int,
+	itelligence int,
+	wisdom int,
+	charisma int,
+	alignment varchar(10),
+	subAlignment varchar(10),
+	race_ID int REFERENCES RACE(race_ID),
+	title varchar(100),
+	profession varchar(50),
+	deity varchar(30),
+	hitpoints int,
+	armor_class int,
+	size varchar(30),
+	appearence varchar(255),
+	location varchar(50)
+);
+
+create TABLE Character_Character (
+	Character_ID int REFERENCES Character(character_ID),
+	Second_Character_ID int REFERENCES Character(character_ID)
+);
+
+create TABLE Character_Weapon (
+	Character_ID int REFERENCES Character(character_ID),
+	Weapon_ID int REFERENCES Weapon(weapon_ID)
+);
+
+CREATE SEQUENCE DNDCLASS_SEQ MINVALUE 1 START WITH 5 INCREMENT BY 1;
+CREATE SEQUENCE RACE_SEQ MINVALUE 1 START WITH 5 INCREMENT BY 1;
+CREATE SEQUENCE WEAPON_SEQ MINVALUE 1 START WITH 5 INCREMENT BY 1;
+CREATE SEQUENCE CHARACTER_SEQ MINVALUE 1 START WITH 5 INCREMENT BY 1;
+
+INSERT into DNDClass(class_name)
+Values
+	('Fighter'),
+	('Wizard'),
+	('Rogue'),
+	('Ranger');
+	
+INSERT into Spells(spell_name)
+Values
+	('Run'),
+	('Float'),
+	('Fireball'),
+	('Attack');
+	
+INSERT into Race(race_name,str_bonus,dex_bonus,con_bonus,int_bonus,wis_bonus,cha_bonus)
+Values
+	('Orc',2,0,2,0,0,0),
+	('Human',1,1,1,1,1,1),
+	('Elf',0,2,0,0,0,1),
+	('Gnome',0,1,0,2,1,0);
+	
+INSERT into DNDClass_Spells(class_ID, spell_ID)
+Values
+	(1,1),
+	(1,4),
+	(2,1),
+	(2,2),
+	(2,3);
+
+
+SELECT pc.class_ID, pc.class_name from DNDClass pc
+	INNER JOIN DNDClass_Spells ps on ps.class_ID = pc.class_ID
+	INNER JOIN Spells s on ps.spell_ID = s.spell_ID;
+
+ Select * from weapon;
