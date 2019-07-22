@@ -41,7 +41,7 @@ public class DndClassServiceImpl implements DndClassService {
 	}
 
 	@Override
-	public DndClass getClassById(int classId) {
-		return dndClassDao.getOne(classId);
+	public DndClass getClassById(int id) {
+		return dndClassDao.getOne(id);
 	}
 }

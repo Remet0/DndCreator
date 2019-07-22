@@ -10,5 +10,5 @@ public interface DndClassService {
 	public DndClass addDNDClass(DndClass pc);
 	public DndClass getClassByName(String spellName);
 	public DndClass saveDndClass(DndClass dndClass);
-	public DndClass getClassById(int classId);
+	public DndClass getClassById(int id);
 }

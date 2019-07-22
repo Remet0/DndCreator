@@ -1,6 +1,5 @@
 package com.dnd.graphql.dndclass;
 
-
 import com.google.common.base.Charsets;
 import com.google.common.io.Resources;
 import graphql.GraphQL;
@@ -22,42 +21,40 @@ import static graphql.schema.idl.TypeRuntimeWiring.newTypeWiring;
 @Component
 public class DndClassProvider {
 
+	@Autowired
+	DndClassDataFetchers dndClassDataFetchers;
 
-    @Autowired
-    DndClassDataFetchers dndClassDataFetchers;
-    
-    private GraphQL graphQL;
+	private GraphQL graphQL;
 
-    @PostConstruct
-    public void init() throws IOException {
-        URL url = Resources.getResource("graphqlschemas/DndClassSchema.graphqls");
-        String sdl = Resources.toString(url, Charsets.UTF_8);
-        URL typeDefs = Resources.getResource("graphqlschemas/typeDefs.graphqls");
-        sdl = sdl + Resources.toString(typeDefs, Charsets.UTF_8);
-        GraphQLSchema graphQLSchema = buildSchema(sdl);
-        this.graphQL = GraphQL.newGraphQL(graphQLSchema).build();
-    }
+	@PostConstruct
+	public void init() throws IOException {
+		URL url = Resources.getResource("graphqlschemas/DndClassSchema.graphqls");
+		String sdl = Resources.toString(url, Charsets.UTF_8);
+		URL typeDefs = Resources.getResource("graphqlschemas/typeDefs.graphqls");
+		sdl = sdl + Resources.toString(typeDefs, Charsets.UTF_8);
+		GraphQLSchema graphQLSchema = buildSchema(sdl);
+		this.graphQL = GraphQL.newGraphQL(graphQLSchema).build();
+	}
 
-    private GraphQLSchema buildSchema(String sdl) {
-        TypeDefinitionRegistry typeRegistry = new SchemaParser().parse(sdl);
-        RuntimeWiring runtimeWiring = buildWiring();
-        SchemaGenerator schemaGenerator = new SchemaGenerator();
-        return schemaGenerator.makeExecutableSchema(typeRegistry, runtimeWiring);
-    }
+	private GraphQLSchema buildSchema(String sdl) {
+		TypeDefinitionRegistry typeRegistry = new SchemaParser().parse(sdl);
+		RuntimeWiring runtimeWiring = buildWiring();
+		SchemaGenerator schemaGenerator = new SchemaGenerator();
+		return schemaGenerator.makeExecutableSchema(typeRegistry, runtimeWiring);
+	}
 
-    private RuntimeWiring buildWiring() {
-        return RuntimeWiring.newRuntimeWiring()
-                .type(newTypeWiring("Query")
-                        .dataFetcher("classByName", dndClassDataFetchers.getClassByNameDataFetcher()))
-                .type(newTypeWiring("Query")
-                        .dataFetcher("classById", dndClassDataFetchers.getClassByIdDataFetcher()))
-                .type(newTypeWiring("Mutation")
-                        .dataFetcher("createClass", dndClassDataFetchers.createClassDataFetcher()))
-                .build();
-    }
+	private RuntimeWiring buildWiring() {
+		return RuntimeWiring.newRuntimeWiring()
+				.type(newTypeWiring("Query").dataFetcher("classByName",
+						dndClassDataFetchers.getClassByNameDataFetcher()))
+				.type(newTypeWiring("Query").dataFetcher("classById", dndClassDataFetchers.getClassByIdDataFetcher()))
+				.type(newTypeWiring("Mutation").dataFetcher("createClass",
+						dndClassDataFetchers.createClassDataFetcher()))
+				.build();
+	}
 
-    @Bean
-    public GraphQL graphQL() {
-        return graphQL;
-    }
+	@Bean
+	public GraphQL graphQL() {
+		return graphQL;
+	}
 }
