@@ -1,0 +1,13 @@
+schema {
+	query: Query
+	mutation: Mutation
+}
+
+type Query {
+	classByName(className: String): DndClass
+	classById(classId: Int) : DndClass
+}
+
+type Mutation {
+	createClass(className: String) : DndClass
+}

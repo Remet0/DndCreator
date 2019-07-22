@@ -1,0 +1,53 @@
+type Character {
+	characterId: String
+	name: String
+	strength: Int
+	dexterity: Int
+	constitution: Int
+	intelligence: Int
+	wisdom: Int
+	charisma: Int
+	alignment: String
+	subAlignment: String
+	race: Race
+	title: String
+	profession: String
+	deity: String
+	dndClass: DndClass
+	hitpoints: Int
+	armorClass: Int
+	size: Int
+	appearence: String
+	followers: [Character]
+	weapons: [Weapon]
+}
+
+type Race {
+	raceId: Int
+	raceName: String
+	strBonus: Int
+	dexBonus: Int
+	conBonus: Int
+	intBonus: Int
+	wisBonus: Int
+	chaBonus: Int
+}
+
+type Weapon {
+	weaponId: Int
+	weaponName: String
+	damage: String
+	damageType: String
+	Materials: String
+}
+
+type DndClass {
+	classId: Int
+	className: String
+	spells: [Spell]
+}
+
+type Spell {
+    spellId: Int
+    spellName: String
+}
