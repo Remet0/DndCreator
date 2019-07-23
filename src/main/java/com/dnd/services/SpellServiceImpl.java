@@ -11,7 +11,7 @@ import com.dnd.dao.SpellDao;
 
 @Service("SpellServiceImpl")
 @Transactional
-public class SpellServiceImpl implements SpellService{
+public class SpellServiceImpl implements SpellService {
 
 	@Autowired
 	SpellDao spellDao;
@@ -30,6 +30,11 @@ public class SpellServiceImpl implements SpellService{
 	@Override
 	public Spell getSpellById(int id) {
 		return spellDao.getOne(id);
+	}
+
+	@Override
+	public Spell getSpellByName(String spellName) {
+		return spellDao.getBySpellName(spellName);
 	}
 
 }

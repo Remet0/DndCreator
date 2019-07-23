@@ -10,12 +10,12 @@ import org.springframework.transaction.annotation.Transactional;
 import com.dnd.beans.DndClass;
 import com.dnd.dao.DndClassDao;
 
-@Service("PlayableClassServiceImpl")
+@Service("DndClassServiceImpl")
 @Transactional
 public class DndClassServiceImpl implements DndClassService {
 
 	@Autowired
-	DndClassDao dndClassDao;
+	private DndClassDao dndClassDao;
 	
 	@Override
 	@Transactional(propagation=Propagation.SUPPORTS)

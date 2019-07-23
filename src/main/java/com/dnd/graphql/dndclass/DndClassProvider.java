@@ -47,7 +47,8 @@ public class DndClassProvider {
 		return RuntimeWiring.newRuntimeWiring()
 				.type(newTypeWiring("Query").dataFetcher("classByName",
 						dndClassDataFetchers.getClassByNameDataFetcher()))
-				.type(newTypeWiring("Query").dataFetcher("classById", dndClassDataFetchers.getClassByIdDataFetcher()))
+				.type(newTypeWiring("Query").dataFetcher("classById",
+						dndClassDataFetchers.getClassByIdDataFetcher()))
 				.type(newTypeWiring("Mutation").dataFetcher("createClass",
 						dndClassDataFetchers.createClassDataFetcher()))
 				.build();

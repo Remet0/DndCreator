@@ -8,7 +8,7 @@ public interface DndClassService {
 
 	public List<DndClass> getAllDNDClasses();
 	public DndClass addDNDClass(DndClass pc);
-	public DndClass getClassByName(String spellName);
+	public DndClass getClassByName(String className);
 	public DndClass saveDndClass(DndClass dndClass);
 	public DndClass getClassById(int id);
 }

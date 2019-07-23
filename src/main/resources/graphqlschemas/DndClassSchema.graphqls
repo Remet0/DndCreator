@@ -9,5 +9,5 @@ type Query {
 }
 
 type Mutation {
-	createClass(className: String) : DndClass
+	createClass(class: DndClassInput) : DndClass
 }

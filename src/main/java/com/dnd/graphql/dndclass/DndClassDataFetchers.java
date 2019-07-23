@@ -1,10 +1,14 @@
 package com.dnd.graphql.dndclass;
 
+import java.util.Map;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.dnd.beans.DndClass;
-import com.dnd.beans.Spell;
+import com.dnd.mappings.DndClassMapping;
 import com.dnd.services.DndClassService;
 import com.dnd.services.SpellService;
 
@@ -12,10 +16,18 @@ import graphql.schema.DataFetcher;
 
 @Component
 public class DndClassDataFetchers {
+	
+	@Autowired
+	private DndClassMapping dcm;
+	
+	@Autowired
+	private DndClassService dndClassService;
 
 	@Autowired
-	DndClassService dndClassService;
-
+	private SpellService spellService;
+	
+	Logger logger = LoggerFactory.getLogger(DndClassDataFetchers.class);
+	
 	public DataFetcher<DndClass> getClassByNameDataFetcher() {
 		return dataFetchingEnvironment -> {
 			String name = dataFetchingEnvironment.getArgument("className");
@@ -32,9 +44,9 @@ public class DndClassDataFetchers {
 
 	public DataFetcher<DndClass> createClassDataFetcher() {
 		return dataFetchingEnvironment -> {
-			String className = dataFetchingEnvironment.getArgument("className");
-			DndClass c = new DndClass();
-			c.setClassName(className);
+			logger.error(spellService.toString());
+			Map<String, Object> dndClass = dataFetchingEnvironment.getArgument("class");
+			DndClass c = dcm.DndClassFromMap(dndClass);
 			return dndClassService.saveDndClass(c);
 		};
 	}
