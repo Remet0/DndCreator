@@ -1,0 +1,22 @@
+schema {
+	query: Query
+	mutation: Mutation
+}
+
+type Query {
+	allSpells: [Spell]
+	spellByName(spellName: String): Spell
+	spellById(spellId: Int) : Spell
+	
+	allClasses: [DndClass]
+	classByName(className: String): DndClass
+	classById(classId: Int) : DndClass
+}
+
+type Mutation {
+	createOrUpdateSpell(spell: SpellInput) : Spell
+	removeSpell(spellId: Int) : Int
+	
+	createOrUpdateClass(class: DndClassInput) : DndClass
+	removeClass(classId: Int) : Int
+}
