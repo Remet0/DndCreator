@@ -11,6 +11,8 @@ local.properties
 .settings/
 .loadpath
 .recommenders
+.project
+.classpath
 
 # External tool builders
 .externalToolBuilders/
@@ -55,3 +57,9 @@ local.properties
 .cache-main
 .scala_dependencies
 .worksheet
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
