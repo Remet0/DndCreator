@@ -2,8 +2,11 @@ package com.dnd.beans;
 
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -37,7 +40,7 @@ public class DndClass implements Serializable{
 	@Column(name="class_name")
 	private String className;
 	
-	@ManyToMany(fetch=FetchType.EAGER)
+	@ManyToMany(fetch=FetchType.EAGER, cascade= {CascadeType.ALL})
 	@JoinTable(name = "DNDCLASS_SPELLS", joinColumns = @JoinColumn(name="class_ID"), inverseJoinColumns = @JoinColumn(name="spell_ID"))
 	private Set<Spell> spells = new HashSet<Spell>();
 	
@@ -50,6 +53,12 @@ public class DndClass implements Serializable{
 		this.classId = classId;
 		this.className = className;
 	}
+	
+	public DndClass(String className) {
+		super();
+		this.className = className;
+	}
+	
 	
 	public int getClassId() {
 		return classId;
@@ -75,4 +84,8 @@ public class DndClass implements Serializable{
 		this.spells = spells;
 	}
 	
+	@Override
+	public String toString() {
+		return "DndClass [classId=" + classId + ", className=" + className + ", spells=" + spells + "]";
+	}
 }

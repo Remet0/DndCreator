@@ -6,6 +6,7 @@ Drop TABLE DndClass_Spells;
 Drop TABLE DndClass;
 Drop TABLE Race;
 Drop TABLE Spells;
+Drop SEQUENCE SPELL_SEQ;
 Drop SEQUENCE DNDCLASS_SEQ;
 Drop SEQUENCE RACE_SEQ;
 Drop SEQUENCE WEAPON_SEQ;
@@ -13,7 +14,7 @@ Drop SEQUENCE CHARACTER_SEQ;
 
 create TABLE Weapon (
 	weapon_ID SERIAL PRIMARY KEY,
-	weapon_name varchar(30),
+	weapon_name varchar(30) UNIQUE NOT NULL,
 	damage varchar(10),
 	damage_type varchar(30),
 	materials varchar(255)
@@ -21,12 +22,12 @@ create TABLE Weapon (
 
 create TABLE DNDClass (
 	class_ID SERIAL PRIMARY KEY,
-	class_name varchar(30)
+	class_name varchar(30) UNIQUE NOT NULL
 );
 
 create TABLE Race (
 	race_ID SERIAL PRIMARY KEY,
-	race_name varchar(30),
+	race_name varchar(30) UNIQUE NOT NULL,
 	str_bonus int,
 	dex_bonus int,
 	con_bonus int,
@@ -37,7 +38,7 @@ create TABLE Race (
 
 create TABLE Spells (
 	spell_ID SERIAL PRIMARY KEY,
-	spell_name varchar(30)
+	spell_name varchar(30) UNIQUE NOT NULL
 );
 
 create TABLE DNDClass_Spells (
@@ -47,7 +48,7 @@ create TABLE DNDClass_Spells (
 
 create TABLE Character (
 	character_ID SERIAL PRIMARY KEY,
-	character_name varchar(30),
+	character_name varchar(30) UNIQUE NOT NULL,
 	class_ID int REFERENCES DNDClass(class_ID),
 	strength int,
 	dexterity int,
@@ -65,7 +66,8 @@ create TABLE Character (
 	armor_class int,
 	size varchar(30),
 	appearence varchar(255),
-	location varchar(50)
+	location varchar(50),
+	description varchar(255)
 );
 
 create TABLE Character_Character (
@@ -78,6 +80,7 @@ create TABLE Character_Weapon (
 	Weapon_ID int REFERENCES Weapon(weapon_ID)
 );
 
+CREATE SEQUENCE SPELL_SEQ MINVALUE 1 START WITH 5 INCREMENT BY 1;
 CREATE SEQUENCE DNDCLASS_SEQ MINVALUE 1 START WITH 5 INCREMENT BY 1;
 CREATE SEQUENCE RACE_SEQ MINVALUE 1 START WITH 5 INCREMENT BY 1;
 CREATE SEQUENCE WEAPON_SEQ MINVALUE 1 START WITH 5 INCREMENT BY 1;
@@ -117,4 +120,4 @@ SELECT pc.class_ID, pc.class_name from DNDClass pc
 	INNER JOIN DNDClass_Spells ps on ps.class_ID = pc.class_ID
 	INNER JOIN Spells s on ps.spell_ID = s.spell_ID;
 
- Select * from weapon;
+ Select * from dndclass;

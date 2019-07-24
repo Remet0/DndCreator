@@ -1,11 +1,20 @@
 package com.dnd.beans;
 
 import java.io.Serializable;
+import java.util.Map;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Persistence;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
 
 @Entity
 @Table(name="SPELLS")
@@ -14,6 +23,12 @@ public class Spell  implements Serializable{
 	private static final long serialVersionUID = 8339374524240686230L;
 
 	@Id
+	@GeneratedValue(generator = "SPELL_SEQ", strategy = GenerationType.SEQUENCE)
+	@GenericGenerator(name="SPELL_SEQ", strategy="org.hibernate.id.enhanced.SequenceStyleGenerator", parameters={
+			@Parameter(name="sequence_name", value="SPELL_SEQ"),
+			@Parameter(name="initial_value",value="5"),
+			@Parameter(name="increment_size",value="1")
+	})
 	@Column(name="spell_ID")
 	private int spellId;
 	
@@ -27,6 +42,11 @@ public class Spell  implements Serializable{
 	public Spell(int spellId, String spellName) {
 		super();
 		this.spellId = spellId;
+		this.spellName = spellName;
+	}
+	
+	public Spell( String spellName) {
+		super();
 		this.spellName = spellName;
 	}
 
@@ -45,5 +65,9 @@ public class Spell  implements Serializable{
 	public void setSpellName(String spellName) {
 		this.spellName = spellName;
 	}
-
+	
+	@Override
+	public String toString() {
+		return "Spell [spellId=" + spellId + ", spellName=" + spellName + "]";
+	}
 }

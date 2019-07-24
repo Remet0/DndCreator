@@ -10,4 +10,5 @@ import com.dnd.beans.Spell;
 @Repository("spellDao")
 public interface SpellDao extends JpaRepository<Spell, Integer> {
 	public List<Spell> findAll();
+	public Spell getBySpellName(String spellName);
 }

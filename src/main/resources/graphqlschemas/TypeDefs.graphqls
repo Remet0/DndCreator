@@ -47,7 +47,18 @@ type DndClass {
 	spells: [Spell]
 }
 
+input DndClassInput {
+	classId: Int
+	className: String
+	spells: [SpellInput]
+}
+
 type Spell {
+    spellId: Int
+    spellName: String
+}
+
+input SpellInput {
     spellId: Int
     spellName: String
 }
