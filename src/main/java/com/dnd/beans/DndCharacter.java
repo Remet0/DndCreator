@@ -91,6 +91,9 @@ public class DndCharacter implements Serializable {
 	@Column(name="location")
 	private String location;
 	
+	@Column(name="description")
+	private String description;
+	
 	@ManyToMany(fetch=FetchType.EAGER)
 	@JoinTable(name = "CHARACTER_CHARACTER", joinColumns = @JoinColumn(name="Character_ID"), inverseJoinColumns = @JoinColumn(name="Second_Character_ID"))
 	private Set<DndCharacter> followers = new HashSet<>();
@@ -259,7 +262,13 @@ public class DndCharacter implements Serializable {
 		this.weapons = weapons;
 	}
 
+	public String getDescription() {
+		return description;
+	}
 
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
 	public int getConstitution() {
 		return constitution;
@@ -279,6 +288,35 @@ public class DndCharacter implements Serializable {
 
 	public DndCharacter() {
 		super();
+	}
+	
+	public DndCharacter(String name, int strength, int dexterity, int constitution, int intelligence, int wisdom,
+			int charisma, Alignment alignment, SubAlignment subAlignment, Race race, String title, String profession,
+			String deity, DndClass dndClass, int hitpoints, int armorClass, String size, String appearence,
+			String location, String description, Set<DndCharacter> followers, Set<Weapon> weapons) {
+		super();
+		this.name = name;
+		this.strength = strength;
+		this.dexterity = dexterity;
+		this.constitution = constitution;
+		this.intelligence = intelligence;
+		this.wisdom = wisdom;
+		this.charisma = charisma;
+		this.alignment = alignment;
+		this.subAlignment = subAlignment;
+		this.race = race;
+		this.title = title;
+		this.profession = profession;
+		this.deity = deity;
+		this.dndClass = dndClass;
+		this.hitpoints = hitpoints;
+		this.armorClass = armorClass;
+		this.size = size;
+		this.appearence = appearence;
+		this.location = location;
+		this.description = description;
+		this.followers = followers;
+		this.weapons = weapons;
 	}
 
 	public void updateStats() {

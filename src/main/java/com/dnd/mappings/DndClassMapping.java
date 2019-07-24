@@ -24,11 +24,7 @@ public class DndClassMapping {
 		c.setClassName((String)map.get("className"));
 		if(map.containsKey("classId")) {
 			c.setClassId((int)map.get("classId"));
-		}
-		List<Map<String, Object>> listOfMappedSpells = (List<Map<String, Object>>)map.get("spells");
-		for(Map<String, Object> spell : listOfMappedSpells) {
-			c.getSpells().add(sm.SpellFromMap(spell));
-		}		
+		}	
 		return c;
 	}
 }
