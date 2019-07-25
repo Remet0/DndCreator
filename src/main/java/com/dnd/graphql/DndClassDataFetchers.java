@@ -1,13 +1,11 @@
-package com.dnd.graphql.dndclass;
+package com.dnd.graphql;
 
 import java.util.List;
 import java.util.Map;
 
-import org.hibernate.exception.ConstraintViolationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Component;
 
 import com.dnd.beans.DndClass;
@@ -31,10 +29,15 @@ public class DndClassDataFetchers {
 	@Autowired
 	private DndClassService dndClassService;
 
-	@Autowired
-	private SpellService spellService;
 	
 	Logger logger = LoggerFactory.getLogger(DndClassDataFetchers.class);
+	
+	
+	public DataFetcher<List<DndClass>> getAllDndClassesDataFetcher() {
+		return dataFetchingEnvironment -> {
+			return dndClassService.getAllDNDClasses();
+		};
+	}
 	
 	public DataFetcher<DndClass> getClassByNameDataFetcher() {
 		return dataFetchingEnvironment -> {
@@ -57,10 +60,18 @@ public class DndClassDataFetchers {
 			List<Map<String, Object>> listOfMappedSpells = (List<Map<String, Object>>)dndClass.get("spells");
 			for(Map<String, Object> spell : listOfMappedSpells) {
 				Spell s = sm.SpellFromMap(spell);
-				Spell spellFromDB = spellService.getSpellById(s.getSpellId());
-				c.getSpells().add(spellFromDB);
+				c.getSpells().add(s);
 			}	
+
 			return dndClassService.saveDndClass(c);
+		};
+	}
+	
+	public DataFetcher<Integer> removeClassDataFetcher() {
+		return dataFetchingEnvironment -> {
+			int id = dataFetchingEnvironment.getArgument("classId");
+			dndClassService.removeclassById(id);
+			return id;
 		};
 	}
 }

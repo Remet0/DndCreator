@@ -56,9 +56,11 @@ input DndClassInput {
 type Spell {
     spellId: Int
     spellName: String
+    description: String
 }
 
 input SpellInput {
     spellId: Int
     spellName: String
+    description: String
 }

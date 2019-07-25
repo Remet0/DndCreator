@@ -1,16 +1,12 @@
 package com.dnd.beans;
 
 import java.io.Serializable;
-import java.util.Map;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Persistence;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -35,16 +31,33 @@ public class Spell  implements Serializable{
 	@Column(name="spell_name")
 	private String spellName;
 	
+	@Column(name="description")
+	private String description;
+	
 	public Spell() {
 		
 	}
 
-	public Spell(int spellId, String spellName) {
+	public Spell(int spellId, String spellName, String description) {
 		super();
 		this.spellId = spellId;
 		this.spellName = spellName;
+		this.description = description;
+	}
+
+	@Override
+	public String toString() {
+		return "Spell [spellId=" + spellId + ", spellName=" + spellName + ", description=" + description + "]";
 	}
 	
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
 	public Spell( String spellName) {
 		super();
 		this.spellName = spellName;
@@ -65,9 +78,5 @@ public class Spell  implements Serializable{
 	public void setSpellName(String spellName) {
 		this.spellName = spellName;
 	}
-	
-	@Override
-	public String toString() {
-		return "Spell [spellId=" + spellId + ", spellName=" + spellName + "]";
-	}
+
 }

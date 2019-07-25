@@ -23,12 +23,6 @@ public class DndClassServiceImpl implements DndClassService {
 		
 		return dndClassDao.findAll();
 	}
-	
-	@Override
-	@Transactional(propagation=Propagation.REQUIRED)
-	public DndClass addDNDClass(DndClass pc)	{
-		return dndClassDao.save(pc);
-	}
 
 	@Override
 	public DndClass getClassByName(String className) {
@@ -36,6 +30,7 @@ public class DndClassServiceImpl implements DndClassService {
 	}
 	
 	@Override
+	@Transactional(propagation=Propagation.REQUIRED)
 	public DndClass saveDndClass(DndClass dndClass) {
 		return dndClassDao.save(dndClass);
 	}
@@ -43,5 +38,10 @@ public class DndClassServiceImpl implements DndClassService {
 	@Override
 	public DndClass getClassById(int id) {
 		return dndClassDao.getOne(id);
+	}
+
+	@Override
+	public void removeclassById(int classId) {
+		dndClassDao.deleteById(classId);
 	}
 }

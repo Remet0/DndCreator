@@ -28,7 +28,7 @@ public class CharacterController {
 	public DndClass getMethodName(@RequestBody DndClass pc) {
 		System.out.println(pc.getClassId());
 		System.out.println(pc.getClassName());
-		return dndClassService.addDNDClass(pc);
+		return dndClassService.saveDndClass(pc);
 	}
 	
 	@RequestMapping(value = "hello", method = RequestMethod.GET, produces = 
