@@ -12,7 +12,7 @@ public class DndClassMapping {
 	public DndClass DndClassFromMap(Map<String,Object> map) {
 		DndClass c = new DndClass();
 		c.setClassName((String)map.get("className"));
-		if(map.containsKey("classId")) {
+		if(map.containsKey("id")) {
 			c.setClassId((int)map.get("classId"));
 		}	
 		return c;

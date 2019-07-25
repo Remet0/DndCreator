@@ -18,7 +18,6 @@ public class DndClassServiceImpl implements DndClassService {
 	private DndClassDao dndClassDao;
 	
 	@Override
-	@Transactional(propagation=Propagation.SUPPORTS)
 	public List<DndClass> getAllDNDClasses() {
 		
 		return dndClassDao.findAll();
@@ -28,12 +27,6 @@ public class DndClassServiceImpl implements DndClassService {
 	public DndClass getClassByName(String className) {
 		return dndClassDao.getByClassName(className);
 	}
-	
-	@Override
-	@Transactional(propagation=Propagation.REQUIRED)
-	public DndClass saveDndClass(DndClass dndClass) {
-		return dndClassDao.save(dndClass);
-	}
 
 	@Override
 	public DndClass getClassById(int id) {
@@ -41,6 +34,13 @@ public class DndClassServiceImpl implements DndClassService {
 	}
 
 	@Override
+	@Transactional(propagation=Propagation.REQUIRED)
+	public DndClass saveDndClass(DndClass dndClass) {
+		return dndClassDao.save(dndClass);
+	}
+	
+	@Override
+	@Transactional(propagation=Propagation.REQUIRED)
 	public void removeclassById(int classId) {
 		dndClassDao.deleteById(classId);
 	}

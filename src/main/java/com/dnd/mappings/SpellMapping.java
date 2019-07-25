@@ -13,7 +13,7 @@ public class SpellMapping {
 		Spell s = new Spell();
 		s.setSpellName((String)map.get("spellName"));
 		s.setDescription((String)map.get("description"));
-		if(map.containsKey("spellId")) {
+		if(map.containsKey("id")) {
 			s.setSpellId((int)map.get("spellId"));
 		}
 		return s;

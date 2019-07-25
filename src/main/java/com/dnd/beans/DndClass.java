@@ -2,8 +2,6 @@ package com.dnd.beans;
 
 import java.io.Serializable;
 import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -40,7 +38,7 @@ public class DndClass implements Serializable{
 	@Column(name="class_name")
 	private String className;
 	
-	@ManyToMany(fetch=FetchType.EAGER)
+	@ManyToMany(fetch=FetchType.EAGER, cascade=CascadeType.MERGE)
 	@JoinTable(name = "DNDCLASS_SPELLS", joinColumns = @JoinColumn(name="class_ID"), inverseJoinColumns = @JoinColumn(name="spell_ID"))
 	private Set<Spell> spells = new HashSet<Spell>();
 	

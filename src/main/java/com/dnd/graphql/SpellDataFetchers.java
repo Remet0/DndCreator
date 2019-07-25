@@ -56,7 +56,6 @@ public class SpellDataFetchers {
 	public DataFetcher<Integer> removeSpellDataFetcher() {
 		return dataFetchingEnvironment -> {
 			int id = dataFetchingEnvironment.getArgument("spellId");
-			logger.error(id + " ");
 			spellService.removeSpellById(id);
 			return id;
 		};

@@ -20,6 +20,7 @@ type Character {
 	appearence: String
 	followers: [Character]
 	weapons: [Weapon]
+	items: [Item]
 }
 
 type Race {
@@ -39,6 +40,20 @@ type Weapon {
 	damage: String
 	damageType: String
 	Materials: String
+}
+
+type Item {
+	itemId: Int
+	itemName: String
+	type: String
+	description: String
+}
+
+input ItemInput {
+	itemId: Int
+	itemName: String
+	type: String
+	description: String
 }
 
 type DndClass {

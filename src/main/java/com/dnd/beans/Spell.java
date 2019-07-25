@@ -35,7 +35,7 @@ public class Spell  implements Serializable{
 	private String description;
 	
 	public Spell() {
-		
+
 	}
 
 	public Spell(int spellId, String spellName, String description) {

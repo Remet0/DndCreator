@@ -13,7 +13,6 @@ import com.dnd.beans.Spell;
 import com.dnd.mappings.DndClassMapping;
 import com.dnd.mappings.SpellMapping;
 import com.dnd.services.DndClassService;
-import com.dnd.services.SpellService;
 
 import graphql.schema.DataFetcher;
 
