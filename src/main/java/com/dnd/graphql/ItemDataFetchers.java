@@ -58,7 +58,6 @@ public class ItemDataFetchers {
 			Item i = im.itemFromMap(item);
 			
 			i = itemService.addItem(i);
-			logger.error(i.toString());
 			
 			return i;
 		};

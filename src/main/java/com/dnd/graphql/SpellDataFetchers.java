@@ -26,7 +26,6 @@ public class SpellDataFetchers {
 	
 	public DataFetcher<List<Spell>> getAllSpellsDataFetcher() {
 		return dataFetchingEnvironment -> {
-			logger.error("IN HEREEEEEEEEEEEEEEEEEEEEEEEEEEEEE!!!!! ! ! ! ! !! ! ! !");
 			return spellService.getAllSpells();
 		};
 	}

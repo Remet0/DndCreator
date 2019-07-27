@@ -106,7 +106,7 @@ public class DndCharacter implements Serializable {
 
 	@ManyToMany(fetch=FetchType.EAGER)
 	@JoinTable(name = "CHARACTER_ITEM", joinColumns = @JoinColumn(name="Character_ID"), inverseJoinColumns = @JoinColumn(name="Item_ID"))
-	private List<Weapon> items = new ArrayList<>();
+	private List<Item> items = new ArrayList<>();
 	
 	public int getCharacterId() {
 		return characterId;
@@ -295,8 +295,38 @@ public class DndCharacter implements Serializable {
 	public DndCharacter() {
 		super();
 	}
-	
 
+	public DndCharacter(int characterId, String name, int strength, int dexterity, int constitution, int intelligence,
+			int wisdom, int charisma, Alignment alignment, SubAlignment subAlignment, Race race, String title,
+			String profession, String deity, DndClass dndClass, int hitpoints, int armorClass, String size,
+			String appearence, String location, String description, Set<DndCharacter> followers, Set<Weapon> weapons,
+			List<Item> items) {
+		super();
+		this.characterId = characterId;
+		this.name = name;
+		this.strength = strength;
+		this.dexterity = dexterity;
+		this.constitution = constitution;
+		this.intelligence = intelligence;
+		this.wisdom = wisdom;
+		this.charisma = charisma;
+		this.alignment = alignment;
+		this.subAlignment = subAlignment;
+		this.race = race;
+		this.title = title;
+		this.profession = profession;
+		this.deity = deity;
+		this.dndClass = dndClass;
+		this.hitpoints = hitpoints;
+		this.armorClass = armorClass;
+		this.size = size;
+		this.appearence = appearence;
+		this.location = location;
+		this.description = description;
+		this.followers = followers;
+		this.weapons = weapons;
+		this.items = items;
+	}
 
 	public void updateStats() {
 		
