@@ -1,0 +1,7 @@
+{
+allSpells {
+  spellId
+  spellName
+  description
+  }
+}

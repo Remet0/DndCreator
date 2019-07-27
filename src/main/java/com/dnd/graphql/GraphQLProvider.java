@@ -87,10 +87,8 @@ public class GraphQLProvider {
 						itemDataFetchers.getItemByNameDataFetcher()))
 				.type(newTypeWiring("Query").dataFetcher("itemById",
 						itemDataFetchers.getItemByIdDataFetcher()))
-				.type(newTypeWiring("Query").dataFetcher("itemById",
+				.type(newTypeWiring("Query").dataFetcher("itemByType",
 						itemDataFetchers.getItemByTypeDataFetcher()))
-				.type(newTypeWiring("Query").dataFetcher("ItemByType",
-						itemDataFetchers.getItemByIdDataFetcher()))
 				.type(newTypeWiring("Mutation").dataFetcher("createOrUpdateItem",
 						itemDataFetchers.createItemDataFetcher()))
 				.type(newTypeWiring("Mutation").dataFetcher("removeItem",

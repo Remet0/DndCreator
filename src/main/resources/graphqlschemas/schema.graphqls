@@ -13,9 +13,9 @@ type Query {
 	classById(classId: Int) : DndClass
 	
 	allItems: [Item]
-	ItemByName(itemName: String): Item
-	ItemById(itemId: Int) : Item
-	ItemByType(type: String) : [Item]
+	itemByName(itemName: String): Item
+	itemById(itemId: Int) : Item
+	itemByType(type: String) : [Item]
 }
 
 type Mutation {

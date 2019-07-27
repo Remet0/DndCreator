@@ -29,11 +29,11 @@ public class ItemServiceImpl implements ItemService {
 
 	@Override
 	public Item getItemByName(String name) {
-		return itemDao.getByName(name);
+		return itemDao.getByItemName(name);
 	}
 
 	@Override
-	public Item getItemByType(String type) {
+	public List<Item> getItemByType(String type) {
 		return itemDao.getByType(type);
 	}
 

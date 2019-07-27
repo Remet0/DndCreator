@@ -17,8 +17,7 @@ import graphql.schema.DataFetcher;
 @Component
 public class SpellDataFetchers {
 
-	@Autowired
-	private SpellMapping sm;
+	private SpellMapping sm = new SpellMapping();
 
 	@Autowired
 	private SpellService spellService;
@@ -27,6 +26,7 @@ public class SpellDataFetchers {
 	
 	public DataFetcher<List<Spell>> getAllSpellsDataFetcher() {
 		return dataFetchingEnvironment -> {
+			logger.error("IN HEREEEEEEEEEEEEEEEEEEEEEEEEEEEEE!!!!! ! ! ! ! !! ! ! !");
 			return spellService.getAllSpells();
 		};
 	}

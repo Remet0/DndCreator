@@ -19,11 +19,9 @@ import graphql.schema.DataFetcher;
 @Component
 public class DndClassDataFetchers {
 	
-	@Autowired
-	private DndClassMapping dcm;
+	private DndClassMapping dcm = new DndClassMapping();
 	
-	@Autowired
-	private SpellMapping sm;
+	private SpellMapping sm = new SpellMapping();
 	
 	@Autowired
 	private DndClassService dndClassService;

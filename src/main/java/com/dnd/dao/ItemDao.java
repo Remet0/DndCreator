@@ -10,6 +10,6 @@ import com.dnd.beans.Item;
 @Repository("itemDao")
 public interface ItemDao extends JpaRepository<Item, Integer> {
 	public List<Item> findAll();
-	public Item getByName(String name);
-	public Item getByType(String type);
+	public List<Item> getByType(String type);
+	public Item getByItemName(String name);
 }

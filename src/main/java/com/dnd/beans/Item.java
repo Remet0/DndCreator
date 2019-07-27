@@ -29,9 +29,9 @@ public class Item implements Serializable {
 	private int itemId;
 	
 	@Column(name="item_Name")
-	private String name;
+	private String itemName;
 	
-	@Column(name="type")
+	@Column(name="item_type")
 	private String type;
 	
 	@Column(name="description")
@@ -40,14 +40,14 @@ public class Item implements Serializable {
 	public Item(int itemId, String name, String type, String description) {
 		super();
 		this.itemId = itemId;
-		this.name = name;
+		this.itemName = name;
 		this.type = type;
 		this.description = description;
 	}
 
 	@Override
 	public String toString() {
-		return "Item [itemId=" + itemId + ", name=" + name + ", type=" + type + ", description=" + description + "]";
+		return "Item [itemId=" + itemId + ", name=" + itemName + ", type=" + type + ", description=" + description + "]";
 	}
 
 	public Item() {
@@ -62,12 +62,12 @@ public class Item implements Serializable {
 		this.itemId = itemId;
 	}
 
-	public String getName() {
-		return name;
+	public String getItemName() {
+		return itemName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setItemName(String name) {
+		this.itemName = name;
 	}
 
 	public String getType() {

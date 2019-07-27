@@ -17,13 +17,11 @@ import graphql.schema.DataFetcher;
 @Component
 public class ItemDataFetchers {
 
-	@Autowired
-	private ItemMapping im;
+	private ItemMapping im = new ItemMapping();
 	
 	@Autowired
 	private ItemService itemService;
 
-	
 	Logger logger = LoggerFactory.getLogger(ItemDataFetchers.class);
 	
 	
@@ -47,7 +45,7 @@ public class ItemDataFetchers {
 		};
 	}
 
-	public DataFetcher<Item> getItemByTypeDataFetcher() {
+	public DataFetcher<List<Item>> getItemByTypeDataFetcher() {
 		return dataFetchingEnvironment -> {
 			String type = dataFetchingEnvironment.getArgument("type");
 			return itemService.getItemByType(type);
@@ -56,9 +54,13 @@ public class ItemDataFetchers {
 	
 	public DataFetcher<Item> createItemDataFetcher() {
 		return dataFetchingEnvironment -> {
-			Map<String, Object> dndClass = dataFetchingEnvironment.getArgument("item");
-			Item c = im.itemFromMap(dndClass);
-			return itemService.addItem(c);
+			Map<String, Object> item = dataFetchingEnvironment.getArgument("item");
+			Item i = im.itemFromMap(item);
+			
+			i = itemService.addItem(i);
+			logger.error(i.toString());
+			
+			return i;
 		};
 	}
 	

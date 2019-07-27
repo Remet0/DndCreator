@@ -14,18 +14,18 @@ import com.dnd.services.DndClassService;
 
 
 @RestController
-public class CharacterController {
+public class DndClassController {
 
 	@Autowired
 	DndClassService dndClassService;
 	
 	@RequestMapping(value = "classes", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE} )
-	public List<DndClass> getMethodName() {
+	public List<DndClass> getAllClasses() {
 		return dndClassService.getAllDNDClasses();
 	}
 	
 	@RequestMapping(value = "class", method = RequestMethod.POST, produces = {MediaType.APPLICATION_JSON_VALUE} )
-	public DndClass getMethodName(@RequestBody DndClass pc) {
+	public DndClass createClass(@RequestBody DndClass pc) {
 		System.out.println(pc.getClassId());
 		System.out.println(pc.getClassName());
 		return dndClassService.saveDndClass(pc);

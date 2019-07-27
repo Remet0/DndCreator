@@ -24,5 +24,4 @@ public class SpellMappingTest {
 		assertEquals(s.getSpellId(), 1);
 		assertEquals(s.getSpellName(), "a spell");
 	}
-
 }

@@ -38,7 +38,7 @@ public class DndClass implements Serializable{
 	@Column(name="class_name")
 	private String className;
 	
-	@ManyToMany(fetch=FetchType.EAGER, cascade=CascadeType.MERGE)
+	@ManyToMany(fetch=FetchType.EAGER)
 	@JoinTable(name = "DNDCLASS_SPELLS", joinColumns = @JoinColumn(name="class_ID"), inverseJoinColumns = @JoinColumn(name="spell_ID"))
 	private Set<Spell> spells = new HashSet<Spell>();
 	
