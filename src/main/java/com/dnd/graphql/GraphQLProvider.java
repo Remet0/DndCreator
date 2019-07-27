@@ -32,6 +32,9 @@ public class GraphQLProvider {
 		@Autowired
 		DndClassDataFetchers dndClassDataFetchers;
 		
+		@Autowired
+		ItemDataFetchers itemDataFetchers;
+		
 		@PostConstruct
 		public void init() throws IOException {
 			URL url = Resources.getResource("graphqlschemas/schema.graphqls");
@@ -53,30 +56,44 @@ public class GraphQLProvider {
 			
 			
 			return RuntimeWiring.newRuntimeWiring()
-					//Spell Queries and Mutations
-					.type(newTypeWiring("Query").dataFetcher("allSpells",
-							spellDataFetchers.getAllSpellsDataFetcher()))
-					.type(newTypeWiring("Query").dataFetcher("spellByName",
-							spellDataFetchers.getSpellByNameDataFetcher()))
-					.type(newTypeWiring("Query").dataFetcher("spellById",
-							spellDataFetchers.getSpellByIdDataFetcher()))
-					.type(newTypeWiring("Mutation").dataFetcher("createOrUpdateSpell",
-							spellDataFetchers.createSpellDataFetcher()))
-					.type(newTypeWiring("Mutation").dataFetcher("removeSpell",
-							spellDataFetchers.removeSpellDataFetcher()))
-					
-					//DndClass Queries and Mutations
-					.type(newTypeWiring("Query").dataFetcher("allClasses",
-							dndClassDataFetchers.getAllDndClassesDataFetcher()))
-					.type(newTypeWiring("Query").dataFetcher("classByName",
-							dndClassDataFetchers.getClassByNameDataFetcher()))
-					.type(newTypeWiring("Query").dataFetcher("classById",
-							dndClassDataFetchers.getClassByIdDataFetcher()))
-					.type(newTypeWiring("Mutation").dataFetcher("createOrUpdateClass",
-							dndClassDataFetchers.createClassDataFetcher()))
-					.type(newTypeWiring("Mutation").dataFetcher("removeClass",
-							dndClassDataFetchers.removeClassDataFetcher()))
-					.build();
+				//Spell Queries and Mutations
+				.type(newTypeWiring("Query").dataFetcher("allSpells",
+						spellDataFetchers.getAllSpellsDataFetcher()))
+				.type(newTypeWiring("Query").dataFetcher("spellByName",
+						spellDataFetchers.getSpellByNameDataFetcher()))
+				.type(newTypeWiring("Query").dataFetcher("spellById",
+						spellDataFetchers.getSpellByIdDataFetcher()))
+				.type(newTypeWiring("Mutation").dataFetcher("createOrUpdateSpell",
+						spellDataFetchers.createSpellDataFetcher()))
+				.type(newTypeWiring("Mutation").dataFetcher("removeSpell",
+						spellDataFetchers.removeSpellDataFetcher()))
+				
+				//DndClass Queries and Mutations
+				.type(newTypeWiring("Query").dataFetcher("allClasses",
+						dndClassDataFetchers.getAllDndClassesDataFetcher()))
+				.type(newTypeWiring("Query").dataFetcher("classByName",
+						dndClassDataFetchers.getClassByNameDataFetcher()))
+				.type(newTypeWiring("Query").dataFetcher("classById",
+						dndClassDataFetchers.getClassByIdDataFetcher()))
+				.type(newTypeWiring("Mutation").dataFetcher("createOrUpdateClass",
+						dndClassDataFetchers.createClassDataFetcher()))
+				.type(newTypeWiring("Mutation").dataFetcher("removeClass",
+						dndClassDataFetchers.removeClassDataFetcher()))
+			
+				//Item Queries and Mutations
+				.type(newTypeWiring("Query").dataFetcher("allItems",
+						itemDataFetchers.getAllItemsDataFetcher()))
+				.type(newTypeWiring("Query").dataFetcher("itemByName",
+						itemDataFetchers.getItemByNameDataFetcher()))
+				.type(newTypeWiring("Query").dataFetcher("itemById",
+						itemDataFetchers.getItemByIdDataFetcher()))
+				.type(newTypeWiring("Query").dataFetcher("itemByType",
+						itemDataFetchers.getItemByTypeDataFetcher()))
+				.type(newTypeWiring("Mutation").dataFetcher("createOrUpdateItem",
+						itemDataFetchers.createItemDataFetcher()))
+				.type(newTypeWiring("Mutation").dataFetcher("removeItem",
+						itemDataFetchers.removeItemDataFetcher()))
+				.build();
 		}
 		
 		@Bean

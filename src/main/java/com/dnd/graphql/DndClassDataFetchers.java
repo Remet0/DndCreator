@@ -13,18 +13,15 @@ import com.dnd.beans.Spell;
 import com.dnd.mappings.DndClassMapping;
 import com.dnd.mappings.SpellMapping;
 import com.dnd.services.DndClassService;
-import com.dnd.services.SpellService;
 
 import graphql.schema.DataFetcher;
 
 @Component
 public class DndClassDataFetchers {
 	
-	@Autowired
-	private DndClassMapping dcm;
+	private DndClassMapping dcm = new DndClassMapping();
 	
-	@Autowired
-	private SpellMapping sm;
+	private SpellMapping sm = new SpellMapping();
 	
 	@Autowired
 	private DndClassService dndClassService;

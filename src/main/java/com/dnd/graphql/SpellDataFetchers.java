@@ -17,8 +17,7 @@ import graphql.schema.DataFetcher;
 @Component
 public class SpellDataFetchers {
 
-	@Autowired
-	private SpellMapping sm;
+	private SpellMapping sm = new SpellMapping();
 
 	@Autowired
 	private SpellService spellService;
@@ -56,7 +55,6 @@ public class SpellDataFetchers {
 	public DataFetcher<Integer> removeSpellDataFetcher() {
 		return dataFetchingEnvironment -> {
 			int id = dataFetchingEnvironment.getArgument("spellId");
-			logger.error(id + " ");
 			spellService.removeSpellById(id);
 			return id;
 		};

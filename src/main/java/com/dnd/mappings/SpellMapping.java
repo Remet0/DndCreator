@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 
 import com.dnd.beans.Spell;
 
-@Component
 public class SpellMapping {
 	
 	public Spell SpellFromMap(Map<String,Object> map) {

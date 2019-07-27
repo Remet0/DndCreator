@@ -53,6 +53,7 @@ create TABLE DNDClass_Spells (
 create TABLE Item(
 	item_id SERIAL PRIMARY KEY,
 	item_name varchar(50) UNIQUE NOT NULL,
+	item_type varchar(30),
 	description varchar(255)
 );
 
@@ -130,7 +131,6 @@ Values
 	(2,1),
 	(2,2),
 	(2,3);
-
 
 SELECT pc.class_ID, pc.class_name from DNDClass pc
 	INNER JOIN DNDClass_Spells ps on ps.class_ID = pc.class_ID

@@ -11,6 +11,11 @@ type Query {
 	allClasses: [DndClass]
 	classByName(className: String): DndClass
 	classById(classId: Int) : DndClass
+	
+	allItems: [Item]
+	itemByName(itemName: String): Item
+	itemById(itemId: Int) : Item
+	itemByType(type: String) : [Item]
 }
 
 type Mutation {
@@ -19,4 +24,7 @@ type Mutation {
 	
 	createOrUpdateClass(class: DndClassInput) : DndClass
 	removeClass(classId: Int) : Int
+	
+	createOrUpdateItem(item: ItemInput) : Item
+	removeItem(itemId: Int) : Int
 }

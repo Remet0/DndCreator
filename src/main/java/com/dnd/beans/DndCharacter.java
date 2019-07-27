@@ -1,7 +1,9 @@
 package com.dnd.beans;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -102,6 +104,10 @@ public class DndCharacter implements Serializable {
 	@JoinTable(name = "CHARACTER_WEAPON", joinColumns = @JoinColumn(name="Character_ID"), inverseJoinColumns = @JoinColumn(name="Weapon_ID"))
 	private Set<Weapon> weapons = new HashSet<>();
 
+	@ManyToMany(fetch=FetchType.EAGER)
+	@JoinTable(name = "CHARACTER_ITEM", joinColumns = @JoinColumn(name="Character_ID"), inverseJoinColumns = @JoinColumn(name="Item_ID"))
+	private List<Item> items = new ArrayList<>();
+	
 	public int getCharacterId() {
 		return characterId;
 	}
@@ -289,12 +295,14 @@ public class DndCharacter implements Serializable {
 	public DndCharacter() {
 		super();
 	}
-	
-	public DndCharacter(String name, int strength, int dexterity, int constitution, int intelligence, int wisdom,
-			int charisma, Alignment alignment, SubAlignment subAlignment, Race race, String title, String profession,
-			String deity, DndClass dndClass, int hitpoints, int armorClass, String size, String appearence,
-			String location, String description, Set<DndCharacter> followers, Set<Weapon> weapons) {
+
+	public DndCharacter(int characterId, String name, int strength, int dexterity, int constitution, int intelligence,
+			int wisdom, int charisma, Alignment alignment, SubAlignment subAlignment, Race race, String title,
+			String profession, String deity, DndClass dndClass, int hitpoints, int armorClass, String size,
+			String appearence, String location, String description, Set<DndCharacter> followers, Set<Weapon> weapons,
+			List<Item> items) {
 		super();
+		this.characterId = characterId;
 		this.name = name;
 		this.strength = strength;
 		this.dexterity = dexterity;
@@ -317,6 +325,7 @@ public class DndCharacter implements Serializable {
 		this.description = description;
 		this.followers = followers;
 		this.weapons = weapons;
+		this.items = items;
 	}
 
 	public void updateStats() {

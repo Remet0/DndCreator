@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 
 import com.dnd.beans.DndClass;
 
-@Component
 public class DndClassMapping {
 	
 	public DndClass DndClassFromMap(Map<String,Object> map) {
