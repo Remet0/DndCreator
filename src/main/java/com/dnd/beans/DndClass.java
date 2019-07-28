@@ -2,9 +2,9 @@ package com.dnd.beans;
 
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -53,6 +53,13 @@ public class DndClass implements Serializable{
 		super();
 		this.classId = classId;
 		this.className = className;
+	}
+	
+	public DndClass(int classId, String className, Set<Spell> spells) {
+		super();
+		this.classId = classId;
+		this.className = className;
+		this.spells = spells;
 	}
 	
 	public DndClass(String className) {

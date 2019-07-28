@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dnd.beans.DndClass;
-import com.dnd.beans.Spell;
 import com.dnd.services.DndClassService;
 
 

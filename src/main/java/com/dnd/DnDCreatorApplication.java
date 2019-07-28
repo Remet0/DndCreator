@@ -1,13 +1,11 @@
-package com.dnd.creator;
+package com.dnd;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-@SpringBootApplication(scanBasePackages={"com.dnd.*"})
-@EnableJpaRepositories("com.dnd.dao")
-@EntityScan("com.dnd.beans")
+@SpringBootApplication
 public class DnDCreatorApplication {
 
 	public static void main(String[] args) {

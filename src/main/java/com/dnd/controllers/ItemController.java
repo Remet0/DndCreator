@@ -29,7 +29,7 @@ public class ItemController {
 		return itemService.addItem(item);
 	}
 	
-	@RequestMapping(value = "items", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "item", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
 	public Item updateItem(@RequestBody Item item) {
 		return itemService.addItem(item);
 	}
@@ -44,8 +44,8 @@ public class ItemController {
 		return itemService.getItemByName(name);
 	}
 	
-	@RequestMapping(value = "item/type/{type}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<Item> getItemByType(@PathVariable String type) {
+	@RequestMapping(value = "items/type/{type}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<Item> getItemsByType(@PathVariable String type) {
 		return itemService.getItemByType(type);
 	}
 }
