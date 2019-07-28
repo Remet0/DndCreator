@@ -35,14 +35,12 @@ public class SpellController {
 	
 	@RequestMapping(value = "spell", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
 	public Spell updateSpell(@RequestBody Spell spell) {
-		System.out.println("ASDASDASDASDASD       DASD QWE A ! ! !!! ! !EEEEEEEEEEEEEEEE");
 		return spellService.addSpell(spell);
 	}
 	
 	@RequestMapping(value = "spell/id/{id}", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
 	public Spell getSpellById(@PathVariable int id) {
 		Spell spell = spellService.getSpellById(id);
-		System.out.println(spell);
 		return spell;
 	}
 	
