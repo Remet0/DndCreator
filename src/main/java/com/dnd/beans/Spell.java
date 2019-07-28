@@ -12,9 +12,12 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity
 @Table(name="SPELLS")
-public class Spell  implements Serializable{
+public class Spell  implements Serializable {
 
 	private static final long serialVersionUID = 8339374524240686230L;
 
@@ -49,14 +52,6 @@ public class Spell  implements Serializable{
 	public String toString() {
 		return "Spell [spellId=" + spellId + ", spellName=" + spellName + ", description=" + description + "]";
 	}
-	
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
 
 	public Spell( String spellName) {
 		super();
@@ -78,5 +73,14 @@ public class Spell  implements Serializable{
 	public void setSpellName(String spellName) {
 		this.spellName = spellName;
 	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
 
 }
