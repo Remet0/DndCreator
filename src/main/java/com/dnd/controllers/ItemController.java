@@ -34,18 +34,18 @@ public class ItemController {
 		return itemService.addItem(item);
 	}
 	
-	@RequestMapping(value = "item/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public Item getItembyId(@PathVariable int id) {
+	@RequestMapping(value = "item/id/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public Item getItemById(@PathVariable int id) {
 		return itemService.getItemById(id);
 	}
 	
-	@RequestMapping(value = "item/{name}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public Item getItembyName(@PathVariable String name) {
+	@RequestMapping(value = "item/name/{name}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public Item getItemByName(@PathVariable String name) {
 		return itemService.getItemByName(name);
 	}
 	
-	@RequestMapping(value = "item/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<Item> getItembyType(@PathVariable String type) {
+	@RequestMapping(value = "item/type/{type}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<Item> getItemByType(@PathVariable String type) {
 		return itemService.getItemByType(type);
 	}
 }

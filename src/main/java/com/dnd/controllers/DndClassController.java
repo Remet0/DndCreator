@@ -36,13 +36,13 @@ public class DndClassController {
 		return dndClassService.saveDndClass(pc);
 	}
 	
-	@RequestMapping(value = "class/{id}", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
+	@RequestMapping(value = "class/id/{id}", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
 	public DndClass getSpellById(@PathVariable int id) {
 		DndClass dndClass = dndClassService.getClassById(id);
 		return dndClass;
 	}
 	
-	@RequestMapping(value = "class/{name}", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
+	@RequestMapping(value = "class/name/{name}", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
 	public DndClass getSpellByName(@PathVariable String name) {
 		DndClass dndClass = dndClassService.getClassByName(name);
 		return dndClass;

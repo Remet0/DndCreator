@@ -38,13 +38,13 @@ public class SpellController {
 		return spellService.addSpell(spell);
 	}
 	
-	@RequestMapping(value = "spell/{id}", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
+	@RequestMapping(value = "spell/id/{id}", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
 	public Spell getSpellById(@PathVariable int id) {
 		Spell spell = spellService.getSpellById(id);
 		return spell;
 	}
 	
-	@RequestMapping(value = "spell/{name}", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
+	@RequestMapping(value = "spell/name/{name}", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
 	public Spell getSpellByName(@PathVariable String name) {
 		Spell spell = spellService.getSpellByName(name);
 		return spell;
