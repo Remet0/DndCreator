@@ -18,9 +18,11 @@ Drop SEQUENCE CHARACTER_SEQ;
 create TABLE Weapon (
 	weapon_ID SERIAL PRIMARY KEY,
 	weapon_name varchar(30) UNIQUE NOT NULL,
+	weapon_type varchar(30),
+	weapon_range int,
 	damage varchar(10),
 	damage_type varchar(30),
-	materials varchar(255)
+	materials_required varchar(255)
 );
 
 create TABLE DNDClass (
